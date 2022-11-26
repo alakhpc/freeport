@@ -1,9 +1,8 @@
 #!/bin/sh
 
-if ! command -v nc &> /dev/null
-then
-    echo "fuck, netcat was not installed."
-    exit
+if ! [ -x "$(command -v nc)" ]; then
+  echo 'fuck, nc is not installed.' >&2
+  exit 1
 fi
 
 netcat -l 0 &
