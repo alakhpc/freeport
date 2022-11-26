@@ -1,6 +1,12 @@
 #!/bin/sh
 
-netcat -l localhost 0 &
+if ! command -v nc &> /dev/null
+then
+    echo "fuck, netcat was not installed."
+    exit
+fi
+
+netcat -l 0 &
 
 lsof -i \
 | grep $! \
